@@ -13,25 +13,18 @@ public class CountryService {
     private CountryService() {
     }
 
-    public String[] getPhoneCode(String countryName) {
+    public Idd getCode(String countryName) {
         RestTemplate restTemplate = new RestTemplate();
         String url = REST_COUNTRY_URL + "name/{countryName}?fields=idd";
         HashMap<String, String> urlParams = new HashMap<>();
         urlParams.put("countryName", countryName);
 
         ResponseEntity<Country[]> response = restTemplate.getForEntity(url, Country[].class, urlParams);
-        if (response.getStatusCode().is2xxSuccessful()) {
-            Country[] countries = response.getBody();
-            if (countries != null && countries.length > 0) {
-                int i = 0;
-                String[] answer = new String[countries[0].getIdd().getSuffixes().length];
-                while (i < countries[0].getIdd().getSuffixes().length) {
-                    answer[i] = countries[0].getIdd().getRoot() + countries[0].getIdd().getSuffixes()[i];
-                    i++;
-                }
-                return answer;
-            }
+        Country[] countries = response.getBody();
+        if (countries != null && countries.length > 0) {
+            return countries[0].getIdd();
+        } else {
+            return null;
         }
-        return new String[0];
     }
 }
