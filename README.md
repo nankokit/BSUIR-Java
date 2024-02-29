@@ -1,17 +1,15 @@
-# BSUIR-Java
- My first java project provided as university laba
-
+# BSUIR-Java labs
  
-## ann1
+## Лабораторная работа №1 
+Создание простейшего сервиса с помощью Spring Boot
 
-### ann2
+**Тема:** сервис принимает название страны и возвращает телефонный код
 
-Hello **world**!!
+**Технологии:** OpenJDK 21, Spring Boot 3.2.3, Maven 
 
-hi ***there***
-
+Пример запроса:
 ```bash
-sudo apt install anechka
+localhost:8080/country-to-code?country={country}
 ```
 
-![Screenshot](image.png)
+![Screenshot](photo_2024-03-01_00-36-30.jpg)
